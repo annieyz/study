@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>苹果电脑的小效果</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .content {
+            width: 100%;
+            max-width: 1920px;
+            text-align: center;
+            position: fixed;
+            bottom: 10px;
+        }
+        img {
+            width: 50px;  
+            cursor: pointer;        
+        }
+    </style>
+    <script>    
+        window.onload = function(){
+            // 先找到图片的中心点；
+            var box = document.getElementById('content');
+            var Imgs = box.getElementsByTagName('img');
+            
+            document.onmousemove = function(e){
+                var e = e || window.event;
+                for (var i = 0,l = Imgs.length;i < l;i++){
+
+                    var x = Imgs[i].offsetLeft + Imgs[i].offsetWidth / 2
+                    var y = Imgs[i].offsetTop + (Imgs[i].offsetHeight / 2) + box.offsetTop
+                    
+                    var a = e.clientX - x;
+                    var b = e.clientY - y;
+                    
+                    // 离得越近，数字越大；
+                    var c = Math.sqrt( Math.pow(a,2) + Math.pow(b,2) );
+                    var sale = 1 - (c / 300);
+                    if (sale < 0.5) {
+                        sale = 0.5;
+                    }
+                    
+                    Imgs[i].style.width = sale * 100 + 'px';
+                    Imgs[i].style.height = sale * 100 + 'px'
+                    console.log(sale)
+                }
+            }           
+        }
+    </script>
+</head>
+<body>
+    <div class="content" id="content">
+        <img src="./img/1.png" alt="">
+        <img src="./img/2.jpg" alt="">
+        <img src="./img/3.jpg" alt="">
+        <img src="./img/4.png" alt="">
+        <img src="./img/5.jpg" alt="">
+        <img src="./img/6.jpg" alt="">
+    </div>
+</body>
+</html>
