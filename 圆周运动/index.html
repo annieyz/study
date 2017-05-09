@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>圆周运动-annieyz</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <script>
+            window.onload = function(){
+                var icon = document.getElementById('icon');
+                var r = 100;
+                var x = 700;
+                var y = 300;
+                var num = 0;
+
+                setInterval(function(){
+                    num ++ ;
+
+                    // Math.sin( num * Math.PI /180) = a / r;
+                    // Math.cos( num * Math.PI /180) = b / r;
+
+                    var a = Math.sin( num * Math.PI / 180) * r;
+
+                    var b = Math.cos( num * Math.PI / 180) * r;  
+
+                    icon.style.top = a + y + 'px';
+
+                    icon.style.left = b + x + 'px';
+
+                    
+                },30)
+
+            }
+        </script>
+    </head>
+    <body>
+        <div class="icon" id="icon"></div>
+    </body>
+</html>
